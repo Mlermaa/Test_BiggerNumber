@@ -8,8 +8,8 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    var leftNumber: Int = Random.nextInt(0,100)
-    var rightNumber: Int = Random.nextInt(0,100)
+    var leftNumber: Int = 0
+    var rightNumber: Int = 0
 
 
 
@@ -19,33 +19,37 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+        asignarValoresAleatorios()
+
         val bl = findViewById<Button>(R.id.buttonLeft)
         val br = findViewById<Button>(R.id.buttonRight)
 
 
         br.setOnClickListener{
-            if (rightNumber>leftNumber) {
-                Toast.makeText(this,"Has Ganado",Toast.LENGTH_LONG).show()
-                println("Has ganado")
-            }else{
-                Toast.makeText(this,"Has perdido",Toast.LENGTH_LONG).show()
-                println("Has perdido")
-            }
-
-            val leftNumber: Int = Random.nextInt(0,100)
-            val rightNumber: Int = Random.nextInt(0,100)
+            validarSeleccion()
         }
 
         bl.setOnClickListener{
-            if (rightNumber>leftNumber) {
-                Toast.makeText(this,"Has Ganado",Toast.LENGTH_LONG).show()
-                println("Has ganado")
-            }else{
-                Toast.makeText(this,"Has perdido",Toast.LENGTH_LONG).show()
-                println("Has perdido")
-            }
+            validarSeleccion()
         }
-
-
     }
+
+    fun validarSeleccion(){
+        if (rightNumber>leftNumber) {
+            Toast.makeText(this,"Has Ganado",Toast.LENGTH_LONG).show()
+            println("Has ganado")
+        }else{
+            Toast.makeText(this,"Has perdido",Toast.LENGTH_LONG).show()
+            println("Has perdido")
+        }
+        asignarValoresAleatorios()
+    }
+
+
+
+    fun asignarValoresAleatorios() {
+        leftNumber = Random.nextInt(0,100)
+        rightNumber = Random.nextInt(0,100)
+    }
+
 }
